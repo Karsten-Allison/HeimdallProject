@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace heimdall_web_api.Models
 {
-    public class UpdateWorkInstructionRequest
+    public record UpdateWorkInstructionRequest
     {
         public string Title { get; set; }
 

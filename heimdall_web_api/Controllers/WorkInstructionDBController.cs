@@ -7,11 +7,11 @@ namespace heimdall_web_api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DbController : Controller
+    public class WorkInstructionDBController : Controller
     {
         private readonly WorkInstructionDatabaseContext context;
 
-        public DbController(WorkInstructionDatabaseContext context)
+        public WorkInstructionDBController(WorkInstructionDatabaseContext context)
         {
             this.context = context;
         }
@@ -39,7 +39,7 @@ namespace heimdall_web_api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddWorkInstructionSets(AddWorkInstructionRequest addWorkInstructionRequest)
+        public async Task<IActionResult> AddWorkInstructionSets([FromBody] AddWorkInstructionRequest addWorkInstructionRequest)
         {
             var workInstructionSet = new WorkInstructionSet()
             {
@@ -76,9 +76,11 @@ namespace heimdall_web_api.Controllers
 
         }
 
+        
+
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteWorkInstructionSet(int id)
+        public async Task<IActionResult> DeleteWorkInstructionSet([FromBody] int id)
         {
             var workInSet = await context.workInstructionSets.FindAsync(id);
 
